@@ -28,6 +28,12 @@ namespace DMSTest.DataAccess
         {
             User userDMS = _dmsTestContext.Users.Where(x => x.IdUsers == idUser).FirstOrDefault();
             return userDMS;
+        }       
+        
+        public List<User> GetListUser()
+        {
+            List<User> listUser = _dmsTestContext.Users.ToList();
+            return listUser;
         }
 
         public bool UpdateUser(User user)

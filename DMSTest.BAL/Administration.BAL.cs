@@ -92,9 +92,44 @@ namespace DMSTest.BAL
                     }
                 }
 
-                answer.Success = 1;
+                answer.Success = 0;
                 answer.Message = "El usuario no existe";
                 answer.Data = null;
+                return answer;
+
+            }
+            catch (Exception ex)
+            {
+                answer.Success = 0;
+                answer.Message = ex.Message;
+                answer.Data = null;
+                return answer;
+            }
+        }       
+        
+        public Answer GetListUser()
+        {
+            Answer answer = new Answer();
+
+            try
+            {
+                List<User> listUserDMS = _registrationDataAccess.GetListUser();
+                List<DMSTest.DTO.Models.DTO.User> listUser = new List<DTO.Models.DTO.User>();
+                DMSTest.DTO.Models.DTO.User user = new DTO.Models.DTO.User();
+
+                foreach (User userDMS in listUserDMS)
+                {
+                    user.IdUsers = userDMS.IdUsers;
+                    user.Nombre = userDMS.Nombre;
+                    user.Email = userDMS.Email;
+                    listUser.Add(user);
+                    user = new DTO.Models.DTO.User();
+                }
+                
+
+                answer.Success = 1;
+                answer.Message = "";
+                answer.Data = listUser;
                 return answer;
 
             }
