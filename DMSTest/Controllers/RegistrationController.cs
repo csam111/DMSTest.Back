@@ -27,18 +27,9 @@ namespace DMSTest.Back.Controllers
         [Route("/CreateUser")]
         public Answer CreateUpdateUser(User user)
         {
-            Answer answer = _registration.CreateUpdateUser(user);
+            Answer answer = _registration.CreateUser(user);
             return answer;
         }
-        
-        [HttpDelete]
-        [Route("/DeleteUser")]
-        public Answer DeleteUser(int idUser)
-        {
-            Answer answer = _registration.DeleteUser(idUser);
-            return answer;
-        }
-
 
     }
 }

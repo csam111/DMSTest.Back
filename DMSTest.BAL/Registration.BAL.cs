@@ -29,7 +29,7 @@ namespace DMSTest.BAL
             _appSettings = appSettings.Value;
         }
 
-        public Answer CreateUpdateUser(DTO.Models.DTO.User user) 
+        public Answer CreateUser(DTO.Models.DTO.User user) 
         {
             Answer answer = new Answer();
             User userDMS = new User();
@@ -41,42 +41,17 @@ namespace DMSTest.BAL
                 userDMS.Email = user.Email;
                 userDMS.Password = sHA256.StrongPassword(user.Password);
 
-                if (user.IdUsers == 0)
+                
+                if(_registrationDataAccess.CreateUser(userDMS))
                 {
-                    if(_registrationDataAccess.CreateUser(userDMS))
-                    {
-                        answer.Success = 1;
-                        answer.Message = "El usuario se creo exitosamente";
-                        answer.Data = null;
-                        return answer;
-                    }
+                    answer.Success = 1;
+                    answer.Message = "El usuario se creo exitosamente";
+                    answer.Data = null;
+                    return answer;
                 }
-                else
-                {
-                    
-                    User validateUser = _registrationDataAccess.SearchUser(userDMS.IdUsers);
-                    if(validateUser != null)
-                    {
-                        if(_registrationDataAccess.UpdateUser(userDMS))
-                        { 
-                        answer.Success = 1;
-                        answer.Message = "El usuario se actualizo exitosamente";
-                        answer.Data = null;
-                        return answer;
-                        }
-
-                    }
-                    else
-                    {
-                        answer.Success = 0;
-                        answer.Message = "El usuario no existe";
-                        answer.Data = null;
-                        return answer;
-                    }
- 
-                }
+               
                 answer.Success = 0;
-                answer.Message = "El usuario no se creo ni actualizo";
+                answer.Message = "El usuario no se creo";
                 answer.Data = null;
                 return answer;
             }
@@ -91,39 +66,6 @@ namespace DMSTest.BAL
             
         }
         
-        public Answer DeleteUser(int idUser) 
-        {
-            Answer answer = new Answer();
-
-            try
-            {
-                User validateUser = _registrationDataAccess.SearchUser(idUser);
-                if (validateUser != null)
-                {
-                    if (_registrationDataAccess.DeleteUser(idUser))
-                    {
-                        answer.Success = 1;
-                        answer.Message = "El usuario se elimino exitosamente";
-                        answer.Data = null;
-                        return answer;
-                    }
-                }
-
-                answer.Success = 1;
-                answer.Message = "El usuario no existe";
-                answer.Data = null;
-                return answer;
-
-            }
-            catch (Exception ex) 
-            {
-                answer.Success = 0;
-                answer.Message = ex.Message;
-                answer.Data = null;
-                return answer;
-            }
-
-            
-        }
+      
     }
 }

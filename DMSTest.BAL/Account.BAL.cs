@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using DMSTest.BAL.Utilities;
 using DMSTest.DTO.Common;
 using DMSTest.DTO.Request;
 using DMSTest.DTO.Response;
@@ -21,7 +22,7 @@ namespace DMSTest.BAL
         private readonly DMSTest.DataAccess.Account _acccountDataAccess;
         public IConfiguration _configuration;
         private readonly AppSettings _appSettings;
-
+        SHA256Password sHA = new SHA256Password();
         public Account(DMSTest.DataAccess.Account accountDataAccess, IConfiguration configuration, IOptions<AppSettings> appSettings)
         {
             _acccountDataAccess = accountDataAccess;
@@ -33,18 +34,9 @@ namespace DMSTest.BAL
         {
             User userDMS = new User();
             UserResponse model = new UserResponse();
-            StringBuilder Sb = new StringBuilder();
-            using (SHA256 hash = SHA256Managed.Create())
-            {
-                Encoding enc = Encoding.UTF8;
-                byte[] result = hash.ComputeHash(enc.GetBytes(user.Password));
-                foreach (byte b in result)
-                    Sb.Append(b.ToString("x2"));
-            }
-            user.Password = Sb.ToString();
 
             userDMS.Email = user.User;
-            userDMS.Password = user.Password;
+            userDMS.Password = sHA.StrongPassword(user.Password);
 
             User isUser = _acccountDataAccess.UserAuthorization(userDMS);
 
