@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMSTest.Back", "DMSTest\DMSTest.Back.csproj", "{67522CBA-3D47-41B4-AC78-0D3502184701}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMSTest.Back", "DMSTest\DMSTest.Back.csproj", "{67522CBA-3D47-41B4-AC78-0D3502184701}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMSTest.BAL", "DMSTest.BAL\DMSTest.BAL.csproj", "{66641231-38F5-4333-824E-1E3147420630}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMSTest.BAL", "DMSTest.BAL\DMSTest.BAL.csproj", "{66641231-38F5-4333-824E-1E3147420630}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMSTest.DataAccess", "DMSTest.DataAccess\DMSTest.DataAccess.csproj", "{D0BF369E-AF0C-4025-B883-7BC318936105}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMSTest.DataAccess", "DMSTest.DataAccess\DMSTest.DataAccess.csproj", "{D0BF369E-AF0C-4025-B883-7BC318936105}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMSTest.DTO", "DMSTest.DTO\DMSTest.DTO.csproj", "{48E0F27C-A595-40EE-86E3-2D19630FB06E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMSTest.DTO", "DMSTest.DTO\DMSTest.DTO.csproj", "{48E0F27C-A595-40EE-86E3-2D19630FB06E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMSTest.Entity", "DMSTest.Entity\DMSTest.Entity.csproj", "{6B9A915A-9541-4670-BC51-FB68C958F641}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMSTest.Entity", "DMSTest.Entity\DMSTest.Entity.csproj", "{6B9A915A-9541-4670-BC51-FB68C958F641}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

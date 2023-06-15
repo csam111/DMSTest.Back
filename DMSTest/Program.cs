@@ -14,6 +14,9 @@ var services = builder.Services;
 services.AddScoped<DMSTest.DataAccess.Account>();
 services.AddScoped<DMSTest.BAL.Account>();
 
+services.AddScoped<DMSTest.DataAccess.Registration>();
+services.AddScoped<DMSTest.BAL.Registration>();
+
 services.AddScoped<IUserService, UserService>();
 
 services.AddDataAccess(configuration);
