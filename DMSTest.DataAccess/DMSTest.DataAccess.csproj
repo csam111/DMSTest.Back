@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DMSTest.Entity\DMSTest.Entity.csproj" />
+  </ItemGroup>
+
 </Project>
