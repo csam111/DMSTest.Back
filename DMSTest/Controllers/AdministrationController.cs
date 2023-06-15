@@ -42,5 +42,16 @@ namespace DMSTest.Back.Controllers
             Answer answer = _administration.DeleteUser(idUser);
             return answer;
         }
+
+
+        [HttpGet]
+        [Route("/GetListUsers")]
+        public Answer GetListUser()
+        {
+            Answer answer = _administration.GetListUser();
+            return answer;
+        }
+
+
     }
 }

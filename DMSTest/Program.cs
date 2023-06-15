@@ -17,6 +17,9 @@ services.AddScoped<DMSTest.BAL.Account>();
 services.AddScoped<DMSTest.DataAccess.Registration>();
 services.AddScoped<DMSTest.BAL.Registration>();
 
+services.AddScoped<DMSTest.DataAccess.Administration>();
+services.AddScoped<DMSTest.BAL.Administration>();
+
 services.AddScoped<IUserService, UserService>();
 
 services.AddDataAccess(configuration);
