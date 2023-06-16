@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using System.Security.Claims;
 
 namespace DMSTest.Back.Controllers
 {
@@ -49,6 +50,26 @@ namespace DMSTest.Back.Controllers
         public Answer GetListUser()
         {
             Answer answer = _administration.GetListUser();
+            return answer;
+        }
+
+        [HttpGet]
+        [Route("/GetPersonalData")]
+        public Answer getPersonalData()
+        {
+            var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userIdClaim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var userId = userIdClaim.Value;
+            Answer answer = _administration.GetPersonalData(int.Parse(userId));
+            return answer;
+        }
+
+
+        [HttpPut]
+        [Route("/UpdatePersonalUser")]
+        public Answer UpdatePersonalUser(User user)
+        {
+            Answer answer = _administration.UpdatePersonalUser(user);
             return answer;
         }
 
