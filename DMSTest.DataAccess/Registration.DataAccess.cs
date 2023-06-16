@@ -42,7 +42,7 @@ namespace DMSTest.DataAccess
             userDMS.Nombre = user.Nombre;
             userDMS.IdUsers = user.IdUsers;
             userDMS.Email = user.Email;
-            userDMS.Password = user.Password;
+            //userDMS.Password = user.Password;
             _dmsTestContext.Entry(userDMS).State = EntityState.Modified;
             _dmsTestContext.SaveChanges();
             return true;

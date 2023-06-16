@@ -25,9 +25,9 @@ namespace DMSTest.Back.Controllers
 
         [HttpPost]
         [Route("/CreateUser")]
-        public Answer CreateUpdateUser(User user)
+        public Answer CreateUpdateUser(User User)
         {
-            Answer answer = _registration.CreateUser(user);
+            Answer answer = _registration.CreateUser(User);
             return answer;
         }
 

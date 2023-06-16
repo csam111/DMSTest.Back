@@ -36,7 +36,7 @@ namespace DMSTest.BAL
                 userDMS.IdUsers = user.IdUsers;
                 userDMS.Nombre = user.Nombre;
                 userDMS.Email = user.Email;
-                userDMS.Password = sHA256.StrongPassword(user.Password);
+                //userDMS.Password = sHA256.StrongPassword(user.Password);
                 User validateUser = _registrationDataAccess.SearchUser(userDMS.IdUsers);
 
                 if (validateUser != null)
