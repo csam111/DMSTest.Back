@@ -18,7 +18,8 @@ public partial class DMSTestContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    => optionsBuilder.UseSqlServer("Server=DESKTOP-J3GOIFR\\SQLEXPRESS;Database=DMSTest;Trusted_Connection=True;Encrypt=False;");
+    => optionsBuilder.UseSqlServer("Server=SQL8001.site4now.net;Database=db_a8fa1f_dmstest;User Id=db_a8fa1f_dmstest_admin;Password=OpenCreator2023;Trusted_Connection=False;Encrypt=False;");
+   // => optionsBuilder.UseSqlServer("Server=DESKTOP-J3GOIFR\\SQLEXPRESS;Database=DMSTest;Trusted_Connection=True;Encrypt=False;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
