@@ -34,9 +34,25 @@ namespace DMSTest.DataAccess
         {
             List<User> listUser = _dmsTestContext.Users.ToList();
             return listUser;
+        }        
+        
+        public User GetPersonalData(int idUser)
+        {
+            User listUser = _dmsTestContext.Users.Where(x=> x.IdUsers == idUser).FirstOrDefault();
+            return listUser;
         }
 
         public bool UpdateUser(User user)
+        {
+            User userDMS = _dmsTestContext.Users.Where(x => x.IdUsers == user.IdUsers).FirstOrDefault();
+            userDMS.Nombre = user.Nombre;
+            userDMS.IdUsers = user.IdUsers;
+            userDMS.Email = user.Email;
+            _dmsTestContext.Entry(userDMS).State = EntityState.Modified;
+            _dmsTestContext.SaveChanges();
+            return true;
+        }         
+        public bool UpdatePersonalUser(User user)
         {
             User userDMS = _dmsTestContext.Users.Where(x => x.IdUsers == user.IdUsers).FirstOrDefault();
             userDMS.Nombre = user.Nombre;

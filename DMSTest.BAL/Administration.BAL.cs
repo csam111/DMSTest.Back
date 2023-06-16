@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,12 +37,59 @@ namespace DMSTest.BAL
                 userDMS.IdUsers = user.IdUsers;
                 userDMS.Nombre = user.Nombre;
                 userDMS.Email = user.Email;
-                userDMS.Password = sHA256.StrongPassword(user.Password);
                 User validateUser = _registrationDataAccess.SearchUser(userDMS.IdUsers);
 
                 if (validateUser != null)
                 {
                     if (_registrationDataAccess.UpdateUser(userDMS))
+                    {
+                        answer.Success = 1;
+                        answer.Message = "El usuario se actualizo exitosamente";
+                        answer.Data = null;
+                        return answer;
+                    }
+                    else
+                    {
+                        answer.Success = 0;
+                        answer.Message = "El usuario no se actualizo";
+                        answer.Data = null;
+                        return answer;
+                    }
+
+                }
+                else
+                {
+                    answer.Success = 0;
+                    answer.Message = "El usuario no existe";
+                    answer.Data = null;
+                    return answer;
+                }
+            }
+            catch (Exception ex)
+            {
+                answer.Success = 0;
+                answer.Message = ex.Message;
+                answer.Data = null;
+                return answer;
+            }
+        }       
+        
+        public Answer UpdatePersonalUser(DTO.Models.DTO.User user)
+        {
+            Answer answer = new Answer();
+            User userDMS = new User();
+
+            try
+            {
+                userDMS.IdUsers = user.IdUsers;
+                userDMS.Nombre = user.Nombre;
+                userDMS.Email = user.Email;
+                userDMS.Password = sHA256.StrongPassword(user.Password);
+                User validateUser = _registrationDataAccess.SearchUser(userDMS.IdUsers);
+
+                if (validateUser != null)
+                {
+                    if (_registrationDataAccess.UpdatePersonalUser(userDMS))
                     {
                         answer.Success = 1;
                         answer.Message = "El usuario se actualizo exitosamente";
@@ -130,6 +178,36 @@ namespace DMSTest.BAL
                 answer.Success = 1;
                 answer.Message = "";
                 answer.Data = listUser;
+                return answer;
+
+            }
+            catch (Exception ex)
+            {
+                answer.Success = 0;
+                answer.Message = ex.Message;
+                answer.Data = null;
+                return answer;
+            }
+        }       
+        
+        public Answer GetPersonalData(int idUser)
+        {
+            Answer answer = new Answer();
+            try
+            {
+
+                User userDMS = _registrationDataAccess.GetPersonalData(idUser);
+                DMSTest.DTO.Models.DTO.User user = new DTO.Models.DTO.User();
+
+                
+                user.IdUsers = userDMS.IdUsers;
+                user.Nombre = userDMS.Nombre;
+                user.Email = userDMS.Email;
+
+
+                answer.Success = 1;
+                answer.Message = "";
+                answer.Data = user;
                 return answer;
 
             }
